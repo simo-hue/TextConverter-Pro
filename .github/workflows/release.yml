@@ -1,0 +1,106 @@
+name: 🚀 Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    name: Build and Release
+    runs-on: macos-latest
+
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: 🧪 Run Tests
+      run: |
+        python -m pytest tests/ -v
+
+    - name: 🔨 Build Application
+      run: |
+        chmod +x scripts/build.sh
+        ./scripts/build.sh
+
+    - name: 📱 Create App Bundle
+      run: |
+        cd dist
+        zip -r "../TextConverter-${{ github.ref_name }}-macOS.zip" text_converter_app.app
+        cd ..
+
+    - name: 🏷️ Extract Version Info
+      id: version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "version_name=${VERSION#v}" >> $GITHUB_OUTPUT
+
+    - name: 📋 Generate Release Notes
+      id: release_notes
+      run: |
+        if [ -f "CHANGELOG.md" ]; then
+          # Extract changes for current version
+          awk '/^## \[?'"${{ steps.version.outputs.version_name }}"'\]?/ {flag=1; next} /^## / && flag {exit} flag' CHANGELOG.md > current_changes.md
+        else
+          # Fallback release notes
+          cat > current_changes.md << EOF
+        ## What's New in ${{ steps.version.outputs.version }}
+
+        🎉 New release of TextConverter Pro!
+
+        ### 🚀 Highlights
+        - Performance improvements
+        - Bug fixes and stability enhancements
+        - Updated dependencies
+
+        ### 📱 Installation
+        1. Download the macOS app bundle below
+        2. Extract and move to /Applications/
+        3. Grant Accessibility permissions in System Preferences
+        4. Launch TextConverter from Applications
+
+        ### 🔧 Build from Source
+        1. Download source code
+        2. Run \`./scripts/build.sh\`
+        3. Follow installation steps above
+
+        ### 📋 System Requirements
+        - macOS 10.12 or later
+        - Accessibility permissions required
+
+        ### 🆘 Support
+        - [User Guide](https://github.com/${{ github.repository }}#usage)
+        - [Issue Tracker](https://github.com/${{ github.repository }}/issues)
+        - [Discussions](https://github.com/${{ github.repository }}/discussions)
+        EOF
+        fi
+
+    - name: 🚀 Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: "TextConverter Pro ${{ steps.version.outputs.version }}"
+        body_path: current_changes.md
+        files: |
+          TextConverter-${{ github.ref_name }}-macOS.zip
+        draft: false
+        prerelease: ${{ contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || contains(github.ref_name, 'rc') }}
+        generate_release_notes: true
+        make_latest: ${{ !contains(github.ref_name, 'beta') && !contains(github.ref_name, 'alpha') && !contains(github.ref_name, 'rc') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 🎉 Release Complete
+      run: |
+        echo "🎉 Release ${{ steps.version.outputs.version }} created successfully!"
+        echo "📦 Download: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}"
