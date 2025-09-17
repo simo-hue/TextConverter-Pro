@@ -33,11 +33,14 @@ class MenuBarApp(rumps.App):
         # Get current appearance settings
         appearance = self.settings_manager.settings.appearance
 
+        # Prepare icon path
+        menu_bar_icon = self._get_menu_bar_icon_path(appearance.menu_bar_icon)
+
         # Initialize rumps with settings
         super().__init__(
             name="TextConverter",
             title=appearance.menu_bar_title,
-            icon=appearance.menu_bar_icon,
+            icon=menu_bar_icon,
             template=True
         )
 
@@ -56,6 +59,31 @@ class MenuBarApp(rumps.App):
         # Apply current settings
         self.apply_settings()
 
+    def _get_menu_bar_icon_path(self, icon_setting: str) -> Optional[str]:
+        """Get the correct path for menu bar icon"""
+        if not icon_setting:
+            return None
+
+        # If it's a file path (ends with .svg, .png, etc.)
+        if icon_setting.endswith(('.svg', '.png', '.jpg', '.jpeg', '.ico')):
+            # Try relative to project root first
+            project_root = Path(__file__).parent.parent.parent
+            icon_path = project_root / icon_setting
+
+            if icon_path.exists():
+                return str(icon_path)
+
+            # Try absolute path
+            if Path(icon_setting).exists():
+                return icon_setting
+
+            # Icon file not found, return None for default
+            self.logger.warning(f"Icon file not found: {icon_setting}")
+            return None
+
+        # If it's an emoji or text, return as is
+        return icon_setting
+
     def setup_menu(self):
         """Configure the menu bar dropdown with preferences"""
         appearance = self.settings_manager.settings.appearance
@@ -68,7 +96,7 @@ class MenuBarApp(rumps.App):
             self.menu = self._create_full_menu()
 
     def _create_full_menu(self) -> list:
-        """Create full menu with all options"""
+        """Create simplified menu with essential options"""
         settings = self.settings_manager.settings
         version = settings.version
 
@@ -87,23 +115,11 @@ class MenuBarApp(rumps.App):
 
         menu_items.extend([
             rumps.separator,
-            # Quick actions
-            rumps.MenuItem("⚡ Quick Actions", callback=None),
-            rumps.MenuItem("  🔄 Test Clipboard", callback=self.test_clipboard),
-            rumps.MenuItem("  📊 Show Statistics", callback=self.show_statistics),
-            rumps.MenuItem("  💡 User Insights", callback=self.show_user_insights),
-            rumps.MenuItem("  📈 Detailed Analytics", callback=self.show_detailed_analytics),
-            rumps.MenuItem("  ⚡ Performance Metrics", callback=self.show_performance_metrics),
-            rumps.MenuItem("  🔧 Restart Hotkeys", callback=self.restart_hotkeys),
-            rumps.separator,
-            # Preferences and Updates
-            self.preferences_manager.create_preferences_menu(),
-            self.update_manager.create_update_menu(),
-            rumps.separator,
-            # Information
+            # Essential functions
             rumps.MenuItem("📊 Status", callback=self.show_status),
-            rumps.MenuItem("ℹ️ About", callback=self.show_about),
-            rumps.MenuItem("📋 Help", callback=self.show_help),
+            rumps.MenuItem("⚙️ Settings", callback=self._show_settings_submenu),
+            rumps.MenuItem("🔄 Updates", callback=self._show_updates_submenu),
+            rumps.MenuItem("🚨 Errors & Logs", callback=self._show_errors_submenu),
             rumps.separator,
             # Exit
             rumps.MenuItem("🚪 Quit TextConverter", callback=self.quit_application)
@@ -182,10 +198,10 @@ class MenuBarApp(rumps.App):
             if hasattr(self, 'title'):
                 self.title = appearance.menu_bar_title
             if hasattr(self, 'icon'):
-                self.icon = appearance.menu_bar_icon
+                self.icon = self._get_menu_bar_icon_path(appearance.menu_bar_icon)
 
-            # Refresh menu if needed
-            self.setup_menu()
+            # Refresh menu only if needed (avoid duplication)
+            # self.setup_menu()  # Commented to prevent menu duplication
 
             self.logger.info("Settings applied successfully")
 
@@ -322,6 +338,120 @@ class MenuBarApp(rumps.App):
 
         except Exception as e:
             self.error_handler.handle_error(e, "showing status")
+
+    def _show_settings_submenu(self, _):
+        """Show settings submenu"""
+        submenu = rumps.Window(
+            title="Settings Menu",
+            message="Choose a settings category:",
+            ok="Cancel",
+            cancel=None
+        )
+
+        # For now, show simple options
+        settings_options = [
+            "🔥 Modify Hotkeys",
+            "🎨 Appearance",
+            "⚙️ Behavior",
+            "🔧 Advanced"
+        ]
+
+        choice = rumps.alert(
+            title="⚙️ Settings",
+            message="Choose what to configure:",
+            ok="Modify Hotkeys",
+            cancel="Cancel",
+            other=["Appearance", "Behavior", "Advanced"]
+        )
+
+        if choice == rumps.clicked.ok:  # Modify Hotkeys
+            self._show_hotkey_settings()
+        elif choice == rumps.clicked.other and choice.other == "Appearance":
+            rumps.alert("Info", "Appearance settings coming soon!")
+        elif choice == rumps.clicked.other and choice.other == "Behavior":
+            rumps.alert("Info", "Behavior settings coming soon!")
+        elif choice == rumps.clicked.other and choice.other == "Advanced":
+            rumps.alert("Info", "Advanced settings coming soon!")
+
+    def _show_hotkey_settings(self):
+        """Show hotkey modification dialog"""
+        settings = self.settings_manager.settings
+        current_hotkeys = []
+        for conv_type, hotkey in settings.hotkeys.items():
+            if hotkey.enabled:
+                hotkey_str = self.settings_manager.get_hotkey_string(conv_type)
+                display_name = conv_type.replace("_", " ").title()
+                current_hotkeys.append(f"{display_name}: {hotkey_str}")
+
+        hotkey_text = "\n".join(current_hotkeys)
+        rumps.alert(
+            title="🔥 Current Hotkeys",
+            message=f"Active hotkeys:\n\n{hotkey_text}\n\nUse Terminal to modify hotkeys:\npython3 textconverter_launcher.py --config",
+            ok="OK"
+        )
+
+    def _show_updates_submenu(self, _):
+        """Show updates submenu"""
+        try:
+            # Check for updates
+            choice = rumps.alert(
+                title="🔄 Updates",
+                message="Check for available updates or view release information.",
+                ok="Check Now",
+                cancel="Cancel",
+                other=["Release Notes"]
+            )
+
+            if choice == rumps.clicked.ok:  # Check Now
+                rumps.alert("🔄 Checking...", "Checking for updates from GitHub...")
+                # The update manager will handle this automatically
+
+            elif choice == rumps.clicked.other:  # Release Notes
+                rumps.alert(
+                    title="📋 Release Notes v1.0.0",
+                    message="✅ Initial release with:\n• Global hotkeys\n• Auto-paste\n• Professional settings\n• DMG & PKG installers",
+                    ok="OK"
+                )
+        except Exception as e:
+            self.error_handler.handle_error(e, "showing updates")
+
+    def _show_errors_submenu(self, _):
+        """Show errors and logs submenu"""
+        try:
+            choice = rumps.alert(
+                title="🚨 Errors & Logs",
+                message="View application logs and error information.",
+                ok="View Logs",
+                cancel="Cancel",
+                other=["Restart Hotkeys", "Reset Settings"]
+            )
+
+            if choice == rumps.clicked.ok:  # View Logs
+                log_dir = "~/Library/Logs/TextConverter"
+                rumps.alert(
+                    title="📋 Log Files",
+                    message=f"Log files are stored in:\n{log_dir}\n\nOpen Finder to view log files.",
+                    ok="OK"
+                )
+
+            elif choice == rumps.clicked.other and choice.other == "Restart Hotkeys":
+                self.restart_hotkeys(None)
+
+            elif choice == rumps.clicked.other and choice.other == "Reset Settings":
+                confirm = rumps.alert(
+                    title="⚠️ Reset Settings",
+                    message="This will reset all settings to defaults. Continue?",
+                    ok="Reset",
+                    cancel="Cancel"
+                )
+                if confirm == rumps.clicked.ok:
+                    if self.settings_manager.reset_to_defaults():
+                        rumps.alert("✅ Success", "Settings reset to defaults. Restart the app for changes to take effect.")
+                    else:
+                        rumps.alert("❌ Error", "Failed to reset settings.")
+
+        except Exception as e:
+            self.error_handler.handle_error(e, "showing errors menu")
 
     def show_about(self, _):
         """Show about dialog with current settings"""

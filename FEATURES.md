@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [🎯 Core Features](#-core-features)
+- [💿 Distribution & Installation](#-distribution--installation)
 - [⚙️ Advanced Configuration](#️-advanced-configuration)
 - [📊 Analytics & Insights](#-analytics--insights)
 - [🔔 Notification System](#-notification-system)
@@ -56,6 +57,82 @@ Intelligent paste system that maintains user workflow context.
 - **Error Recovery**: Fallback to clipboard-only mode if paste fails
 - **Application Compatibility**: Tested with 500+ macOS applications
 - **Security**: Local processing only, no external connections
+
+---
+
+## 💿 Distribution & Installation
+
+### Professional Distribution System
+TextConverter Pro offers multiple installation methods for different user types and deployment scenarios.
+
+#### Distribution Packages
+
+##### DMG Installer (Recommended for Users)
+- **File**: `TextConverter-Pro-1.0.0.dmg`
+- **Size**: ~16MB compressed
+- **Target**: End users, personal installations
+- **Installation**: Drag-and-drop to Applications folder
+- **Features**:
+  - Elegant installer interface with README
+  - Applications folder symlink for easy installation
+  - Custom DMG layout with professional appearance
+  - Automatic verification and integrity checks
+
+##### PKG Installer (Enterprise)
+- **File**: `TextConverter-Pro-Installer-1.0.0.pkg`
+- **Size**: ~16MB
+- **Target**: Enterprise deployment, automated installation
+- **Installation**: Guided installer with scripts
+- **Features**:
+  - Welcome screen with application overview
+  - License agreement display
+  - Automatic permission setup guidance
+  - Post-installation scripts for configuration
+  - Silent installation support for IT deployment
+
+#### Build System
+Professional build automation with comprehensive tooling:
+
+```bash
+# Available build targets
+make clean      # Clean build artifacts
+make app        # Build .app bundle only
+make dmg        # Create DMG installer
+make installer  # Create PKG installer
+make all        # Build all distribution packages
+```
+
+#### Technical Architecture
+- **py2app Integration**: Professional Python to macOS app conversion
+- **Universal Binary**: Intel x64 and Apple Silicon support
+- **Module Resolution**: Advanced import path management for bundled apps
+- **Dependency Packaging**: Automatic inclusion of pynput, rumps, PyObjC
+- **Code Signing Ready**: Prepared for developer certificate signing
+
+#### Installation Requirements
+- **macOS**: 10.12 (Sierra) or later
+- **Memory**: 50MB RAM during installation, 15MB runtime
+- **Storage**: 20MB free space for installation
+- **Permissions**: Accessibility access required after installation
+- **Architecture**: Universal (works on Intel and Apple Silicon)
+
+### Build From Source
+Complete development environment setup:
+
+```bash
+# Clone and setup
+git clone https://github.com/simo-hue/TextConverter-Pro.git
+cd TextConverter-Pro
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Development mode
+python3 textconverter_launcher.py
+
+# Build distribution packages
+make all
+```
 
 ---
 

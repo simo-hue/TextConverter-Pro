@@ -6,10 +6,34 @@ Main entry point that handles imports correctly for py2app
 
 import sys
 import os
+import psutil
 from pathlib import Path
+
+def check_single_instance():
+    """Check if another instance is already running"""
+    current_pid = os.getpid()
+
+    for proc in psutil.process_iter(['pid', 'cmdline', 'name']):
+        try:
+            if proc.info['pid'] != current_pid and proc.info['cmdline']:
+                cmdline = ' '.join(proc.info['cmdline'])
+                # Look for Python processes running textconverter_launcher.py directly
+                if ("python" in proc.info['name'].lower() and
+                    "textconverter_launcher.py" in cmdline and
+                    "/bin/zsh" not in cmdline):  # Exclude shell wrappers
+                    print(f"Another instance is already running (PID: {proc.info['pid']})")
+                    print("Exiting to prevent duplicate menu items.")
+                    return False
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            continue
+    return True
 
 def main():
     """Main launcher that sets up proper Python path and imports"""
+
+    # Check for single instance
+    if not check_single_instance():
+        sys.exit(0)
 
     # Add the current directory and src directory to Python path
     current_dir = Path(__file__).parent

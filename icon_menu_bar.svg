@@ -1,0 +1,167 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definizione dei gradienti e stili -->
+  <defs>
+    <!-- Gradiente principale per il fumetto - Versione Dark -->
+    <linearGradient id="mainGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gradiente principale per il fumetto - Versione Light -->
+    <linearGradient id="mainGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5f5f5;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gradiente per le onde AI - Versione Dark -->
+    <linearGradient id="waveGradientDark" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.4" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.4" />
+    </linearGradient>
+    
+    <!-- Gradiente per le onde AI - Versione Light -->
+    <linearGradient id="waveGradientLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0.4" />
+      <stop offset="50%" style="stop-color:#000000;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.4" />
+    </linearGradient>
+    
+    <!-- Filtro per ombra sottile - Dark version -->
+    <filter id="softShadowDark" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#ffffff" flood-opacity="0.15"/>
+    </filter>
+    
+    <!-- Filtro per ombra sottile - Light version -->
+    <filter id="softShadowLight" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Versione DARK (sfondo nero) -->
+  <g id="darkVersion">
+    <!-- Fumetto principale -->
+    <path d="M 50 60 
+             L 170 60 
+             Q 180 60 180 70
+             L 180 110
+             Q 180 120 170 120
+             L 85 120
+             L 70 135
+             Q 65 140 60 135
+             L 60 120
+             Q 50 120 50 110
+             L 50 70
+             Q 50 60 60 60
+             Z" 
+          fill="url(#mainGradientDark)" 
+          filter="url(#softShadowDark)"/>
+    
+    <!-- Onde AI stilizzate -->
+    <path d="M 70 75 
+             Q 85 70 100 75
+             Q 115 80 130 75
+             Q 145 70 160 75" 
+          stroke="url(#waveGradientDark)" 
+          stroke-width="2.5" 
+          fill="none" 
+          stroke-linecap="round"/>
+    
+    <path d="M 70 90 
+             Q 90 85 110 90
+             Q 130 95 150 90
+             Q 165 85 170 90" 
+          stroke="url(#waveGradientDark)" 
+          stroke-width="2" 
+          fill="none" 
+          stroke-linecap="round"/>
+    
+    <path d="M 70 105 
+             Q 85 100 100 105
+             Q 120 110 140 105" 
+          stroke="url(#waveGradientDark)" 
+          stroke-width="1.8" 
+          fill="none" 
+          stroke-linecap="round"/>
+    
+    <!-- Cursore di testo stilizzato -->
+    <rect x="145" y="98" width="2" height="14" fill="#ffffff" opacity="0.9" rx="1">
+      <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Punti decorativi -->
+    <circle cx="75" cy="85" r="1.5" fill="#ffffff" opacity="0.5">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2s" repeatCount="indefinite" begin="0s"/>
+    </circle>
+    <circle cx="90" cy="100" r="1.2" fill="#ffffff" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <circle cx="110" cy="82" r="1" fill="#ffffff" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+  </g>
+  <!-- Versione LIGHT (sfondo bianco) - posizionata a destra -->
+  <g id="lightVersion" transform="translate(200, 0)">
+    <!-- Fumetto principale -->
+    <path d="M 50 60 
+             L 170 60 
+             Q 180 60 180 70
+             L 180 110
+             Q 180 120 170 120
+             L 85 120
+             L 70 135
+             Q 65 140 60 135
+             L 60 120
+             Q 50 120 50 110
+             L 50 70
+             Q 50 60 60 60
+             Z" 
+          fill="url(#mainGradientLight)" 
+          stroke="#000000" 
+          stroke-width="2"
+          filter="url(#softShadowLight)"/>
+    
+    <!-- Onde AI stilizzate -->
+    <path d="M 70 75 
+             Q 85 70 100 75
+             Q 115 80 130 75
+             Q 145 70 160 75" 
+          stroke="url(#waveGradientLight)" 
+          stroke-width="2.5" 
+          fill="none" 
+          stroke-linecap="round"/>
+    
+    <path d="M 70 90 
+             Q 90 85 110 90
+             Q 130 95 150 90
+             Q 165 85 170 90" 
+          stroke="url(#waveGradientLight)" 
+          stroke-width="2" 
+          fill="none" 
+          stroke-linecap="round"/>
+    
+    <path d="M 70 105 
+             Q 85 100 100 105
+             Q 120 110 140 105" 
+          stroke="url(#waveGradientLight)" 
+          stroke-width="1.8" 
+          fill="none" 
+          stroke-linecap="round"/>
+    
+    <!-- Cursore di testo stilizzato -->
+    <rect x="145" y="98" width="2" height="14" fill="#000000" opacity="0.9" rx="1">
+      <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Punti decorativi -->
+    <circle cx="75" cy="85" r="1.5" fill="#000000" opacity="0.5">
+      <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2s" repeatCount="indefinite" begin="0s"/>
+    </circle>
+    <circle cx="90" cy="100" r="1.2" fill="#000000" opacity="0.4">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <circle cx="110" cy="82" r="1" fill="#000000" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="1.8s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+  </g>
+</svg>

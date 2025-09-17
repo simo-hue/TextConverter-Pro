@@ -56,7 +56,7 @@ class AppearanceConfig:
     """Appearance and UI configuration"""
     theme: str = ThemeMode.SYSTEM.value
     menu_bar_icon: str = "📝"
-    menu_bar_title: str = "TXT"
+    menu_bar_title: str = ""
     show_notifications: bool = True
     notification_style: str = NotificationStyle.STANDARD.value
     notification_duration: float = 3.0

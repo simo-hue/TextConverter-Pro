@@ -170,15 +170,13 @@ class PreferencesManager:
             rumps.separator,
         ])
 
-        # System integration
+        # System integration (simplified for now)
         items.extend([
             rumps.MenuItem("🖥️ System:", callback=None),
             rumps.MenuItem(f"  {'✅' if settings.auto_start else '❌'} Start at Login",
                          callback=self._toggle_auto_start),
-            rumps.MenuItem(f"  {'✅' if settings.check_updates else '❌'} Check for Updates",
-                         callback=self._toggle_check_updates),
-            rumps.MenuItem(f"  {'✅' if settings.send_analytics else '❌'} Send Anonymous Analytics",
-                         callback=self._toggle_analytics),
+            rumps.MenuItem(f"  {'✅' if settings.check_updates else '❌'} Check for Updates", callback=None),
+            rumps.MenuItem(f"  {'✅' if settings.send_analytics else '❌'} Send Anonymous Analytics", callback=None),
         ])
 
         return items
@@ -191,29 +189,28 @@ class PreferencesManager:
         # Logging settings
         items.extend([
             rumps.MenuItem("📊 Logging:", callback=None),
-            rumps.MenuItem(f"  Level: {settings.log_level}", callback=self._set_log_level),
-            rumps.MenuItem(f"  Max Files: {settings.max_log_files}", callback=self._set_max_log_files),
-            rumps.MenuItem(f"  File Size: {settings.log_file_size_mb}MB", callback=self._set_log_file_size),
-            rumps.MenuItem(f"  Cleanup: {settings.cleanup_logs_days} days", callback=self._set_cleanup_days),
+            rumps.MenuItem(f"  Level: {settings.log_level}", callback=None),
+            rumps.MenuItem(f"  Max Files: {settings.max_log_files}", callback=None),
+            rumps.MenuItem(f"  File Size: {settings.log_file_size_mb}MB", callback=None),
+            rumps.MenuItem(f"  Cleanup: {settings.cleanup_logs_days} days", callback=None),
             rumps.separator,
         ])
 
         # Performance settings
         items.extend([
             rumps.MenuItem("⚡ Performance:", callback=None),
-            rumps.MenuItem(f"  Retry Attempts: {settings.retry_attempts}", callback=self._set_retry_attempts),
-            rumps.MenuItem(f"  Retry Delay: {int(settings.retry_delay * 1000)}ms", callback=self._set_retry_delay),
-            rumps.MenuItem(f"  {'✅' if settings.enable_performance_monitoring else '❌'} Performance Monitoring",
-                         callback=self._toggle_performance_monitoring),
+            rumps.MenuItem(f"  Retry Attempts: {settings.retry_attempts}", callback=None),
+            rumps.MenuItem(f"  Retry Delay: {int(settings.retry_delay * 1000)}ms", callback=None),
+            rumps.MenuItem(f"  {'✅' if settings.enable_performance_monitoring else '❌'} Performance Monitoring", callback=None),
             rumps.separator,
         ])
 
         # Diagnostics
         items.extend([
             rumps.MenuItem("🔍 Diagnostics:", callback=None),
-            rumps.MenuItem("View Log Files", callback=self._view_logs),
-            rumps.MenuItem("System Information", callback=self._show_system_info),
-            rumps.MenuItem("Validate Settings", callback=self._validate_settings),
+            rumps.MenuItem("View Log Files", callback=None),
+            rumps.MenuItem("System Information", callback=None),
+            rumps.MenuItem("Validate Settings", callback=None),
         ])
 
         return items
@@ -349,6 +346,84 @@ class PreferencesManager:
         if self.settings_manager.update_behavior(auto_paste=not current):
             status = "enabled" if not current else "disabled"
             self._show_success_notification(f"Auto-paste {status}")
+
+    def _set_paste_delay(self, _):
+        """Set paste delay"""
+        current_delay = self.settings_manager.settings.behavior.paste_delay
+        current_ms = int(current_delay * 1000)
+
+        response = rumps.Window(
+            title="Set Paste Delay",
+            message=f"Enter paste delay in milliseconds (current: {current_ms}ms):",
+            default_text=str(current_ms),
+            ok="Set",
+            cancel="Cancel"
+        ).run()
+
+        if response.clicked:
+            try:
+                new_ms = int(response.text)
+                if 10 <= new_ms <= 2000:
+                    new_delay = new_ms / 1000.0
+                    if self.settings_manager.update_behavior(paste_delay=new_delay):
+                        self._show_success_notification(f"Paste delay set to {new_ms}ms")
+                else:
+                    rumps.alert("Invalid delay", "Delay must be between 10ms and 2000ms")
+            except ValueError:
+                rumps.alert("Invalid input", "Please enter a valid number")
+
+    def _set_max_text_length(self, _):
+        """Set maximum text length"""
+        current_length = self.settings_manager.settings.behavior.max_text_length
+
+        response = rumps.Window(
+            title="Set Max Text Length",
+            message=f"Enter maximum text length in characters (current: {current_length:,}):",
+            default_text=str(current_length),
+            ok="Set",
+            cancel="Cancel"
+        ).run()
+
+        if response.clicked:
+            try:
+                new_length = int(response.text)
+                if 1000 <= new_length <= 10_000_000:
+                    if self.settings_manager.update_behavior(max_text_length=new_length):
+                        self._show_success_notification(f"Max length set to {new_length:,} characters")
+                else:
+                    rumps.alert("Invalid length", "Length must be between 1,000 and 10,000,000 characters")
+            except ValueError:
+                rumps.alert("Invalid input", "Please enter a valid number")
+
+    def _toggle_remember_conversion(self, _):
+        """Toggle remember last conversion"""
+        current = self.settings_manager.settings.behavior.remember_last_conversion
+        if self.settings_manager.update_behavior(remember_last_conversion=not current):
+            status = "enabled" if not current else "disabled"
+            self._show_success_notification(f"Remember last conversion {status}")
+
+    def _set_history_size(self, _):
+        """Set clipboard history size"""
+        current_size = self.settings_manager.settings.behavior.clipboard_history_size
+
+        response = rumps.Window(
+            title="Set History Size",
+            message=f"Enter clipboard history size (current: {current_size}):",
+            default_text=str(current_size),
+            ok="Set",
+            cancel="Cancel"
+        ).run()
+
+        if response.clicked:
+            try:
+                new_size = int(response.text)
+                if 1 <= new_size <= 100:
+                    if self.settings_manager.update_behavior(clipboard_history_size=new_size):
+                        self._show_success_notification(f"History size set to {new_size}")
+                else:
+                    rumps.alert("Invalid size", "History size must be between 1 and 100")
+            except ValueError:
+                rumps.alert("Invalid input", "Please enter a valid number")
 
     def _toggle_auto_start(self, _):
         """Toggle auto-start at login"""

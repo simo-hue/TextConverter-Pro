@@ -37,8 +37,31 @@ OPTIONS = {
         'NSAppleEventsUsageDescription': 'Text Converter needs access to control other applications for text conversion.',
         'NSSystemAdministrationUsageDescription': 'Text Converter needs accessibility permissions to monitor keyboard shortcuts.'
     },
-    'packages': find_packages(),
-    'includes': ['src.core', 'src.ui', 'src.utils'],
+    'packages': ['src', 'src.core', 'src.ui', 'src.utils'],
+    'includes': [
+        'src.core.converter',
+        'src.core.hotkeys',
+        'src.core.autopaste',
+        'src.ui.menubar_app',
+        'src.ui.notification_manager',
+        'src.ui.feedback_dialog',
+        'src.utils.settings',
+        'src.utils.logger',
+        'src.utils.error_handler',
+        'src.utils.feedback_system',
+        'src.utils.exceptions',
+        'src.utils.github_updater',
+        'pynput',
+        'pynput.keyboard',
+        'pynput.keyboard._darwin',
+        'pynput.mouse',
+        'pynput.mouse._darwin',
+        'pynput._util',
+        'pynput._util.darwin'
+    ],
+    'site_packages': True,
+    'optimize': 0,  # No optimization to avoid import issues
+    'excludes': ['tkinter', 'unittest', 'test', 'pytest'],
 }
 
 setup(

@@ -15,16 +15,18 @@ This guide covers all installation methods for TextConverter Pro on macOS.
 ## ⚡ Quick Installation
 
 ### Option 1: DMG Installer (Recommended)
-1. Download `TextConverter-Pro-1.0.0.dmg` from [GitHub Releases](https://github.com/simo-hue/TextConverter-Pro/releases)
-2. Double-click the DMG file
+1. Download `TextConverter-Pro-1.0.0.dmg` (16MB) from [GitHub Releases](https://github.com/simo-hue/TextConverter-Pro/releases)
+2. Double-click the DMG file to mount
 3. Drag **TextConverter Pro** to **Applications** folder
-4. Launch from Applications and grant permissions
+4. Launch from Applications and grant Accessibility permissions
+5. Look for "TXT" icon in your menu bar
 
 ### Option 2: PKG Installer
-1. Download `TextConverter-Pro-Installer-1.0.0.pkg` from [GitHub Releases](https://github.com/simo-hue/TextConverter-Pro/releases)
+1. Download `TextConverter-Pro-Installer-1.0.0.pkg` (16MB) from [GitHub Releases](https://github.com/simo-hue/TextConverter-Pro/releases)
 2. Double-click the PKG file
-3. Follow installer prompts
-4. Launch from Applications
+3. Follow the guided installer with welcome screen and license
+4. Installer will guide you through permission setup
+5. Launch from Applications - fully configured!
 
 ---
 
@@ -100,11 +102,15 @@ cd TextConverter-Pro
 # Install Python dependencies
 pip install -r requirements.txt
 
-# Build the app
+# Build the .app bundle
 make app
 
-# Or create full distribution
-make all
+# Create all distribution packages
+make all  # Creates both DMG and PKG installers
+
+# Individual build targets
+make dmg        # Create DMG installer only
+make installer  # Create PKG installer only
 ```
 
 #### Build Targets

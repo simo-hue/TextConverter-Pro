@@ -78,9 +78,10 @@ Thank you for choosing TextConverter Pro!
 - Simone Mattioli (https://github.com/simo-hue)
 EOF
 
-# Step 4: Create a custom background image (optional)
-echo -e "${YELLOW}🎨 Creating DMG background...${NC}"
-# For now, we'll use the system default. You can add a custom background later.
+# Step 4: Setup custom background image
+echo -e "${YELLOW}🎨 Setting up DMG background...${NC}"
+mkdir -p "$DMG_DIR/.background"
+cp "background_installer.png" "$DMG_DIR/.background/background.png"
 
 # Step 5: Create temporary DMG
 echo -e "${YELLOW}💿 Creating disk image...${NC}"

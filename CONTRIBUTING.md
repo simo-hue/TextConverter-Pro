@@ -45,8 +45,12 @@ Thank you for your interest in contributing to TextConverter Pro! This document 
 
 3. **Run Development Version**
    ```bash
-   # Run the application
-   python3 src/ui/menubar_app.py
+   # Run the application in development mode
+   python3 textconverter_launcher.py
+
+   # Or build and test the full app
+   make app
+   open "dist/TextConverter Pro.app"
 
    # Run tests
    python3 -m pytest tests/ -v
@@ -74,15 +78,25 @@ TextConverter-Pro/
 │   │   └── autopaste.py   # Auto-paste functionality
 │   ├── ui/                # User interface
 │   │   ├── menubar_app.py # Main menu bar application
-│   │   └── preferences.py # Settings interface
+│   │   ├── notification_manager.py # Rich notifications
+│   │   ├── preferences_window.py   # Settings interface
+│   │   └── feedback_dialog.py      # User feedback system
 │   └── utils/             # Utilities and helpers
-│       ├── settings.py    # Configuration management
-│       ├── logger.py      # Logging system
-│       └── updater.py     # Auto-update system
-├── tests/                 # Test suite
-├── scripts/               # Build and deployment scripts
-├── docs/                  # Documentation
-└── requirements.txt       # Python dependencies
+│       ├── settings.py    # Professional configuration management
+│       ├── logger.py      # Comprehensive logging system
+│       ├── error_handler.py # Error management & recovery
+│       ├── github_updater.py # Auto-update from GitHub
+│       └── feedback_system.py # User feedback collection
+├── scripts/               # Professional build & deployment
+│   ├── build_app.sh      # .app bundle builder
+│   ├── create_dmg.sh     # DMG installer creator
+│   └── create_installer.sh # PKG installer builder
+├── tests/                 # Comprehensive test suite
+├── 📱 setup.py           # py2app configuration
+├── 🚀 textconverter_launcher.py # Main application entry point
+├── 🛠️ Makefile          # Build automation
+├── requirements.txt       # Python dependencies
+└── *.md                  # Documentation files
 ```
 
 ### Environment Setup
@@ -106,14 +120,36 @@ TextConverter-Pro/
    pre-commit install
    ```
 
-### Configuration
-Create a local development configuration:
-```bash
-# Copy example configuration
-cp config/development.json.example config/development.json
+### Build System
+Professional build automation for development and distribution:
 
-# Edit with your preferences
-vim config/development.json
+```bash
+# Clean build artifacts
+make clean
+
+# Build .app bundle for testing
+make app
+
+# Create DMG installer
+make dmg
+
+# Create PKG installer
+make installer
+
+# Build all distribution packages
+make all
+```
+
+#### Testing Builds
+```bash
+# Test the built app bundle
+open "dist/TextConverter Pro.app"
+
+# Test DMG installer
+open "dist/TextConverter-Pro-1.0.0.dmg"
+
+# Verify PKG installer
+installer -pkg "dist/TextConverter-Pro-Installer-1.0.0.pkg" -target /tmp/test
 ```
 
 ---

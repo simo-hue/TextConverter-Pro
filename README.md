@@ -12,7 +12,7 @@
 
 *Transform text instantly with global hotkeys • Auto-updates • Professional settings • Native macOS integration*
 
-[📥 Download Latest Release](https://github.com/simo-hue/TextConverter-Pro/releases/latest) • [🎯 Features](FEATURES.md) • [📖 Tutorial](#-complete-usage-guide) • [🏗️ Build](#-build-from-source) • [🤝 Contributing](CONTRIBUTING.md) • [💬 Support](#-support--community)
+[📥 Download Latest Release](https://github.com/simo-hue/TextConverter-Pro/releases/latest) • [🎯 Features](FEATURES.md) • [📖 Tutorial](#-complete-usage-guide) • [💿 Installation Guide](INSTALL.md) • [🤝 Contributing](CONTRIBUTING.md) • [💬 Support](#-support--community)
 
 </div>
 
@@ -54,7 +54,20 @@ TextConverter Pro is the **most advanced text case conversion tool** for macOS t
 
 ## 🚀 Installation & Setup (2-Minute Setup)
 
-### Method 1: Quick Start (Recommended)
+### Method 1: DMG Installer (Recommended for Users)
+1. **Download** the latest [TextConverter-Pro-1.0.0.dmg](https://github.com/simo-hue/TextConverter-Pro/releases/latest)
+2. **Double-click** the DMG file to mount it
+3. **Drag** TextConverter Pro to your Applications folder
+4. **Launch** from Applications and grant Accessibility permissions
+5. **Look for "TXT"** in your menu bar - you're ready!
+
+### Method 2: PKG Installer (Enterprise/Automated)
+1. **Download** [TextConverter-Pro-Installer-1.0.0.pkg](https://github.com/simo-hue/TextConverter-Pro/releases/latest)
+2. **Double-click** the PKG file
+3. **Follow** the installer prompts with automatic permission setup
+4. **Launch** from Applications - fully configured!
+
+### Method 3: Build from Source (Developers)
 ```bash
 # Clone the repository
 git clone https://github.com/simo-hue/TextConverter-Pro.git
@@ -63,23 +76,17 @@ cd TextConverter-Pro
 # Install dependencies
 pip3 install -r requirements.txt
 
-# Launch menu bar app
-python3 text_converter_app.py
-```
-
-### Method 2: Build Native macOS App
-```bash
 # Build professional .app bundle
-./scripts/build.sh
+make app
 
-# Install to Applications
-cp dist/text_converter_app.app /Applications/
+# Create distribution packages
+make all  # Creates both DMG and PKG installers
 ```
 
-### Method 3: Terminal Version (Legacy)
+### Method 4: Quick Development Mode
 ```bash
-# Run in terminal (for development)
-python3 text_converter_cli.py
+# For development and testing
+python3 textconverter_launcher.py
 ```
 
 ---
@@ -156,12 +163,21 @@ textconverter-pro/
 │   └── autopaste.py         # Intelligent paste system
 ├── 🎨 src/ui/               # Presentation layer
 │   ├── menubar_app.py       # Native macOS menu bar interface
-│   └── terminal_app.py      # CLI interface for development
+│   ├── notification_manager.py # Rich notification system
+│   └── preferences_window.py   # Settings interface
 ├── ⚙️ src/utils/            # Configuration & utilities
-│   └── config.py            # Centralized app configuration
+│   ├── settings.py          # Professional settings manager
+│   ├── logger.py            # Comprehensive logging system
+│   ├── error_handler.py     # Error management & recovery
+│   └── github_updater.py    # Automatic update system
 ├── 🧪 tests/                # Automated testing suite
-├── 📜 scripts/              # Build & deployment automation
-└── 📱 setup.py              # macOS app bundle builder
+├── 📜 scripts/              # Professional build & deployment
+│   ├── build_app.sh         # .app bundle builder
+│   ├── create_dmg.sh        # DMG installer creator
+│   └── create_installer.sh  # PKG installer builder
+├── 📱 setup.py              # py2app configuration
+├── 🚀 textconverter_launcher.py # Main entry point
+└── 🛠️ Makefile             # Build automation
 ```
 
 ### 🚀 Performance Metrics
