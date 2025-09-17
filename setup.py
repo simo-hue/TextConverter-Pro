@@ -7,8 +7,8 @@ from setuptools import setup, find_packages
 import os
 
 # App configuration
-APP_NAME = "Text Converter"
-APP = ['text_converter_app.py']
+APP_NAME = "TextConverter Pro"
+APP = ['textconverter_launcher.py']
 DATA_FILES = []
 
 # Find all source files
