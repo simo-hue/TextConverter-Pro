@@ -1,0 +1,194 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: ["simo-hue"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        Please search existing issues first to avoid duplicates.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before submitting
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+        - label: I have tried the latest version of TextConverter Pro
+          required: true
+        - label: I have read the documentation and troubleshooting guide
+          required: true
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the bug...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Please provide detailed steps to reproduce the issue
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Execute '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: Describe what you expected...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: Describe what actually happened...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: macos-version
+    attributes:
+      label: macOS Version
+      description: What version of macOS are you running?
+      options:
+        - macOS 14 Sonoma
+        - macOS 13 Ventura
+        - macOS 12 Monterey
+        - macOS 11 Big Sur
+        - macOS 10.15 Catalina
+        - macOS 10.14 Mojave
+        - macOS 10.13 High Sierra
+        - macOS 10.12 Sierra
+        - Other (please specify in additional context)
+    validations:
+      required: true
+
+  - type: input
+    id: textconverter-version
+    attributes:
+      label: TextConverter Pro Version
+      description: What version of TextConverter Pro are you using?
+      placeholder: "e.g., v1.0.0 (check in About dialog)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: installation-method
+    attributes:
+      label: Installation Method
+      description: How did you install TextConverter Pro?
+      options:
+        - Built from source
+        - Downloaded from GitHub Releases
+        - Other (please specify)
+    validations:
+      required: true
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version (if built from source)
+      description: What version of Python are you using?
+      placeholder: "e.g., Python 3.9.0"
+
+  - type: dropdown
+    id: bug-frequency
+    attributes:
+      label: Bug Frequency
+      description: How often does this bug occur?
+      options:
+        - Always (100%)
+        - Frequently (>75%)
+        - Sometimes (25-75%)
+        - Rarely (<25%)
+        - Only once
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bug-severity
+    attributes:
+      label: Bug Severity
+      description: How severe is this bug?
+      options:
+        - Critical (Application crashes or unusable)
+        - High (Major feature broken)
+        - Medium (Feature partially broken)
+        - Low (Minor issue or cosmetic)
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages or Log Output
+      description: Please paste any error messages or relevant log output
+      placeholder: |
+        Paste error messages or log output here...
+
+        Log files can be found at: ~/Library/Logs/TextConverter/
+      render: shell
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem
+      placeholder: Drag and drop screenshots here or paste image URLs
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: |
+        Add any other context about the problem here. This might include:
+        - Other applications running when the bug occurred
+        - System settings that might be relevant
+        - Accessibility permissions status
+        - Recent system changes or updates
+      placeholder: Any additional information that might be helpful...
+
+  - type: checkboxes
+    id: troubleshooting
+    attributes:
+      label: Troubleshooting Steps Tried
+      description: Please check any troubleshooting steps you've already tried
+      options:
+        - label: Restarted TextConverter Pro
+        - label: Restarted my computer
+        - label: Checked Accessibility permissions
+        - label: Tried different text/applications
+        - label: Reset TextConverter Pro settings
+        - label: Reinstalled TextConverter Pro
+
+  - type: markdown
+    attributes:
+      value: |
+        ## What happens next?
+
+        1. **Triage**: We'll review your issue within 2-3 business days
+        2. **Investigation**: We may ask for additional information
+        3. **Resolution**: We'll work on a fix and keep you updated
+        4. **Testing**: You may be asked to test the fix
+
+        Thank you for helping improve TextConverter Pro! 🚀

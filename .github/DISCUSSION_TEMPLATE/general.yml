@@ -1,0 +1,31 @@
+labels: ["discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Welcome to TextConverter Pro Discussions! 💬
+
+        This is the place for:
+        - General questions about using TextConverter Pro
+        - Feature ideas and brainstorming
+        - Sharing workflows and use cases
+        - Community support and tips
+        - Feedback and suggestions
+
+        ## Discussion Guidelines
+
+        - **Be respectful** and constructive in your interactions
+        - **Search existing discussions** before starting a new one
+        - **Use clear titles** that describe your topic
+        - **Provide context** to help others understand your situation
+        - **Help others** by sharing your knowledge and experience
+
+        ## Categories
+
+        - **💡 Ideas** - Feature requests and brainstorming
+        - **🙋 Q&A** - Questions and answers
+        - **📢 General** - General discussion about TextConverter Pro
+        - **💼 Show and Tell** - Share your workflows and use cases
+        - **🐛 Troubleshooting** - Community help with issues
+
+        Happy discussing! 🚀

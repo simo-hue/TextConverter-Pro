@@ -447,8 +447,8 @@ Download size: {release.size_mb:.1f} MB
 # Global updater instance
 _updater_instance: Optional[GitHubUpdater] = None
 
-def get_github_updater(repo_owner: str = "simonemattioli",
-                      repo_name: str = "textconverter-pro") -> GitHubUpdater:
+def get_github_updater(repo_owner: str = "simo-hue",
+                      repo_name: str = "TextConverter-Pro") -> GitHubUpdater:
     """Get or create the global GitHub updater instance"""
     global _updater_instance
     if _updater_instance is None:

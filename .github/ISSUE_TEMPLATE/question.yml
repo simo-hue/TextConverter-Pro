@@ -1,0 +1,187 @@
+name: ❓ Question or Support
+description: Ask a question or get help with using TextConverter Pro
+title: "[QUESTION] "
+labels: ["question", "needs-response"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in TextConverter Pro!
+
+        For general questions, consider using **GitHub Discussions** instead of issues.
+
+        Please search existing questions first to see if your question has already been answered.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm you've done the following before asking
+      options:
+        - label: I have read the README.md and FEATURES.md documentation
+          required: true
+        - label: I have searched existing issues and discussions
+          required: true
+        - label: I have tried basic troubleshooting steps
+
+  - type: dropdown
+    id: question-category
+    attributes:
+      label: Question Category
+      description: What category does your question fall into?
+      options:
+        - Installation & Setup
+        - Basic Usage & Features
+        - Advanced Configuration
+        - Troubleshooting & Errors
+        - Performance & Optimization
+        - Compatibility & Requirements
+        - Development & Contributing
+        - Security & Privacy
+        - Other (please specify)
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: Please ask your question clearly and provide context
+      placeholder: |
+        What exactly are you trying to do?
+        What have you tried so far?
+        What specific help do you need?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-level
+    attributes:
+      label: Experience Level
+      description: What's your experience level with TextConverter Pro?
+      options:
+        - New user (just installed)
+        - Beginner (using basic features)
+        - Intermediate (familiar with most features)
+        - Advanced (power user, customizations)
+        - Developer (contributing or extending)
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment-info
+    attributes:
+      label: Environment Information
+      description: |
+        Please provide relevant system information (if applicable to your question)
+      placeholder: |
+        - macOS Version: [e.g., macOS 13 Ventura]
+        - TextConverter Version: [e.g., v1.0.0]
+        - Installation Method: [e.g., built from source, downloaded release]
+        - Python Version: [if relevant, e.g., Python 3.9.0]
+
+  - type: textarea
+    id: what-tried
+    attributes:
+      label: What Have You Tried?
+      description: |
+        What steps have you already taken to solve this?
+        What resources have you consulted?
+      placeholder: |
+        I have tried:
+        1. [Step 1]
+        2. [Step 2]
+
+        I have checked:
+        - [ ] Documentation
+        - [ ] Existing issues
+        - [ ] Settings/preferences
+        - [ ] System permissions
+
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: What are you trying to achieve? What would success look like?
+      placeholder: I want to be able to...
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behavior
+      description: What's happening now? What's not working as expected?
+      placeholder: Currently, when I try to..., the result is...
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages (if any)
+      description: If you're getting error messages, please paste them here
+      placeholder: |
+        Error messages or log output...
+
+        Log files can be found at: ~/Library/Logs/TextConverter/
+      render: shell
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your question
+      placeholder: Drag and drop screenshots here or paste image URLs
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is this question for you?
+      options:
+        - Low (just curious, no rush)
+        - Medium (would like to know soon)
+        - High (blocking my work)
+        - Critical (urgent issue affecting productivity)
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: |
+        Any other information that might be relevant to your question
+      placeholder: |
+        Use case details:...
+
+        Workflow context:...
+
+        Other relevant information:...
+
+  - type: checkboxes
+    id: question-type
+    attributes:
+      label: Type of Help Needed
+      description: What kind of help are you looking for? (Check all that apply)
+      options:
+        - label: How-to guidance (step-by-step instructions)
+        - label: Troubleshooting help (something isn't working)
+        - label: Best practices advice (optimal way to do something)
+        - label: Feature clarification (understanding what's possible)
+        - label: Configuration help (settings and customization)
+        - label: Development assistance (extending or contributing)
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Response Guidelines
+
+        - **Questions about basic usage**: Usually answered within 1-2 business days
+        - **Technical troubleshooting**: May require back-and-forth, typically resolved within 3-5 days
+        - **Development questions**: Response time varies based on complexity
+        - **Critical issues**: We prioritize questions marked as critical urgency
+
+        ## Alternative Resources
+
+        - **Documentation**: Check README.md and FEATURES.md for comprehensive guides
+        - **Discussions**: Use GitHub Discussions for broader questions and community input
+        - **Issues**: Create a bug report if something is definitely broken
+
+        Thank you for using TextConverter Pro! 🚀

@@ -12,7 +12,7 @@
 
 *Transform text instantly with global hotkeys • Auto-updates • Professional settings • Native macOS integration*
 
-[📥 Download Latest Release](https://github.com/simonemattioli/textconverter-pro/releases/latest) • [🎯 Features](#-enterprise-grade-features) • [📖 Tutorial](#-complete-usage-guide) • [🏗️ Build](#-build-from-source) • [💬 Support](#-support--community)
+[📥 Download Latest Release](https://github.com/simo-hue/TextConverter-Pro/releases/latest) • [🎯 Features](FEATURES.md) • [📖 Tutorial](#-complete-usage-guide) • [🏗️ Build](#-build-from-source) • [🤝 Contributing](CONTRIBUTING.md) • [💬 Support](#-support--community)
 
 </div>
 
@@ -23,6 +23,8 @@
 **Stop wasting time manually retyping text cases!**
 
 TextConverter Pro is the **most advanced text case conversion tool** for macOS that **saves developers and content creators hours every day**. With lightning-fast global hotkeys, automatic updates, and enterprise-grade settings, you can instantly convert text to UPPERCASE, lowercase, or Capitalize Case from ANY application without breaking your workflow.
+
+📚 **[View Complete Feature Documentation →](FEATURES.md)**
 
 ### 🔥 Enterprise-Grade Features
 
@@ -55,8 +57,8 @@ TextConverter Pro is the **most advanced text case conversion tool** for macOS t
 ### Method 1: Quick Start (Recommended)
 ```bash
 # Clone the repository
-git clone https://github.com/simonemattioli/textconverter-pro.git
-cd textconverter-pro
+git clone https://github.com/simo-hue/TextConverter-Pro.git
+cd TextConverter-Pro
 
 # Install dependencies
 pip3 install -r requirements.txt
@@ -223,17 +225,18 @@ python3 tests/benchmark_performance.py
 ## 🔥 Advanced Features & Pro Tips
 
 ### 🎯 Power User Features
-- **Custom Hotkey Remapping** (coming in v1.1)
-- **Batch Text Processing** (coming in v1.2)
-- **Plugin System** for custom transformations
-- **Text History** with undo functionality
-- **Smart Case Detection** (camelCase, snake_case, kebab-case)
+- **📊 Real-time Analytics** - Comprehensive usage statistics and performance insights
+- **🔔 Smart Notifications** - Customizable feedback system with rich user insights
+- **⚡ Performance Monitoring** - Track conversion speed and optimize workflow
+- **🎨 Theme Support** - System, Light, Dark themes with customizable appearance
+- **🔧 Advanced Settings** - Professional configuration with validation and backup
+- **📈 Usage Insights** - Personalized recommendations and workflow optimization
 
 ### 💡 Pro Tips for Maximum Efficiency
-1. **Set up auto-launch**: Add to Login Items for instant availability
-2. **Memorize hotkeys**: `⌘⇧U/L/C` becomes muscle memory in 3 days
-3. **Use with Alfred/Raycast**: Perfect complement to launcher apps
-4. **Combine with text expanders**: Create powerful text automation workflows
+1. **Monitor Analytics**: Use "📊 Show Statistics" to track your usage patterns
+2. **Customize Notifications**: Configure feedback style in preferences for your workflow
+3. **Performance Insights**: Check "⚡ Performance Metrics" to optimize conversion speed
+4. **Export Data**: Use "📈 Detailed Analytics" to export usage data for analysis
 
 ---
 
@@ -254,10 +257,12 @@ A: Customize hotkeys in `src/utils/config.py` or disable conflicting apps
 A: Some apps (like Adobe products) may block global shortcuts. Try the copy-paste method.
 
 ### 🆘 Still Need Help?
-- 📧 **Email Support**: [Insert email]
-- 💬 **Discord Community**: [Insert Discord link]
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/simonemattioli/textconverter-pro/issues)
-- 📖 **Documentation**: [Full Wiki](https://github.com/simonemattioli/textconverter-pro/wiki)
+- 🐛 **Bug Reports**: [Create an Issue](https://github.com/simo-hue/TextConverter-Pro/issues/new/choose) using our detailed templates
+- ✨ **Feature Requests**: [Request a Feature](https://github.com/simo-hue/TextConverter-Pro/issues/new/choose) with structured forms
+- 💬 **General Questions**: [GitHub Discussions](https://github.com/simo-hue/TextConverter-Pro/discussions)
+- 📚 **Full Documentation**: [Complete Features Guide](FEATURES.md)
+- 🤝 **Contributing**: [Contribution Guidelines](CONTRIBUTING.md)
+- 🔒 **Security**: [Security Policy](.github/SECURITY.md)
 
 ---
 
@@ -306,15 +311,17 @@ A: Some apps (like Adobe products) may block global shortcuts. Try the copy-past
 
 ### 💝 Show Your Support
 - ⭐ **Star this repository** if it saved you time!
-- 🐦 **Share on Twitter** with #TextConverterPro
-- 📺 **Create YouTube content** featuring the tool
-- 💝 **Sponsor development** via GitHub Sponsors
+- 🐛 **Report Issues** using our [structured templates](https://github.com/simo-hue/TextConverter-Pro/issues/new/choose)
+- ✨ **Request Features** through our [comprehensive forms](https://github.com/simo-hue/TextConverter-Pro/issues/new/choose)
+- 🤝 **Contribute Code** following our [contribution guidelines](CONTRIBUTING.md)
+- 💬 **Join Discussions** in our [community forum](https://github.com/simo-hue/TextConverter-Pro/discussions)
 
-### 🌍 Community Links
-- **Discord**: [Join our community](https://discord.gg/textconverter)
-- **Twitter**: [@TextConverterPro](https://twitter.com/textconverterpro)
-- **Reddit**: [r/MacProductivity](https://reddit.com/r/macproductivity)
-- **Product Hunt**: [Follow for updates](https://producthunt.com/products/textconverter-pro)
+### 🛡️ Quality Assurance
+- **🔒 Security First**: [Security Policy](.github/SECURITY.md) with responsible disclosure
+- **📋 Professional Templates**: Structured issue and PR templates for quality contributions
+- **🧪 Comprehensive Testing**: Full test suite with performance benchmarks
+- **📚 Complete Documentation**: [Detailed feature documentation](FEATURES.md) and guides
+- **🎯 Best Practices**: Following industry standards for open source projects
 
 ---
 
@@ -332,10 +339,15 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 **Simone Mattioli** • Computer Science Student • macOS Enthusiast
 
-- 🎓 **Education**: Computer Science, University of [University Name]
+- 🎓 **Education**: Computer Science Student
 - 💼 **Focus**: macOS application development, productivity tools
 - 🌟 **Mission**: Making technology more accessible and efficient for everyone
-- 📧 **Contact**: [email] • **LinkedIn**: [profile] • **GitHub**: [@simonemattioli]
+
+### 🌐 Connect with Me
+- **🐱 GitHub**: [simo-hue](https://github.com/simo-hue)
+- **🌐 Website**: [simo-hue.github.io](https://simo-hue.github.io)
+- **📺 YouTube**: [SimosDiary2003](https://www.youtube.com/@SimosDiary2003)
+- **📸 Instagram**: [@simo___one](https://www.instagram.com/simo___one/)
 
 ---
 
@@ -343,12 +355,12 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 ### 🚀 Ready to Transform Your Text Workflow?
 
-**[⬇️ Download TextConverter Pro Now](https://github.com/simonemattioli/textconverter-pro/releases)**
+**[⬇️ Download TextConverter Pro Now](https://github.com/simo-hue/TextConverter-Pro/releases)**
 
-*Join 10,000+ satisfied users who save hours every week*
+*Transform your text workflow with professional-grade tools*
 
-[![GitHub stars](https://img.shields.io/github/stars/simonemattioli/textconverter-pro?style=social)](https://github.com/simonemattioli/textconverter-pro)
-[![Twitter Follow](https://img.shields.io/twitter/follow/textconverterpro?style=social)](https://twitter.com/textconverterpro)
+[![GitHub stars](https://img.shields.io/github/stars/simo-hue/TextConverter-Pro?style=social)](https://github.com/simo-hue/TextConverter-Pro)
+[![YouTube Channel](https://img.shields.io/badge/YouTube-SimosDiary2003-red?style=social&logo=youtube)](https://www.youtube.com/@SimosDiary2003)
 
 **Built with ❤️ for the macOS community**
 

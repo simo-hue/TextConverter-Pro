@@ -1,0 +1,291 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement
+title: "[FEATURE] "
+labels: ["enhancement", "needs-discussion"]
+assignees: ["simo-hue"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature!
+
+        Please search existing feature requests first to avoid duplicates.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm the following before submitting
+      options:
+        - label: I have searched existing issues and discussions for similar requests
+          required: true
+        - label: I have read the project roadmap and this isn't already planned
+          required: true
+        - label: This feature aligns with the project's goals and scope
+          required: true
+
+  - type: textarea
+    id: feature-summary
+    attributes:
+      label: Feature Summary
+      description: A brief, clear description of the feature you'd like to see
+      placeholder: Summarize the feature in 1-2 sentences...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature Category
+      description: What category does this feature fall into?
+      options:
+        - Core Functionality (text conversion)
+        - User Interface (menu bar, preferences)
+        - Hotkey System (keyboard shortcuts)
+        - Settings & Configuration
+        - Analytics & Feedback
+        - Performance & Optimization
+        - Accessibility & Usability
+        - Integration (with other apps)
+        - Developer Tools & API
+        - Other (please specify in description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user-type
+    attributes:
+      label: Primary User Type
+      description: Who would primarily benefit from this feature?
+      options:
+        - All Users
+        - Developers & Programmers
+        - Content Creators & Writers
+        - Students & Researchers
+        - Business Professionals
+        - Power Users
+        - Accessibility Users
+        - Other (please specify)
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: |
+        What problem does this feature solve? What use case does it address?
+        Help us understand the "why" behind your request.
+      placeholder: |
+        As a [user type], I have trouble with [specific problem] because [reason].
+        This impacts my workflow by [impact description].
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: A clear and concise description of what you want to happen
+      placeholder: |
+        I would like TextConverter Pro to...
+
+        This would work by...
+
+        The user experience would be...
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Detailed Use Cases
+      description: |
+        Describe specific scenarios where this feature would be useful.
+        Provide concrete examples to help us understand the need.
+      placeholder: |
+        Use Case 1: When I'm [doing activity], I need to [accomplish task] so that [benefit]
+
+        Use Case 2: As a [role], I want to [goal] because [reason]
+
+        Use Case 3: In the context of [situation], this feature would help by [benefit]
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternative-solutions
+    attributes:
+      label: Alternative Solutions
+      description: |
+        Describe any alternative solutions or features you've considered.
+        What workarounds do you currently use?
+      placeholder: |
+        Currently, I work around this by...
+
+        Other solutions I considered:
+        1. [Alternative 1]
+        2. [Alternative 2]
+
+        Why these alternatives aren't ideal:...
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to you?
+      options:
+        - Critical (I can't use the app effectively without this)
+        - High (Would significantly improve my workflow)
+        - Medium (Would be a nice improvement)
+        - Low (Nice to have but not essential)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity-estimate
+    attributes:
+      label: Implementation Complexity (Your Estimate)
+      description: |
+        Based on your understanding of the app, how complex do you think this would be to implement?
+        (This helps us prioritize, but don't worry if you're not sure)
+      options:
+        - Simple (UI change or setting addition)
+        - Medium (New feature with moderate complexity)
+        - Complex (Major feature requiring significant changes)
+        - Very Complex (Fundamental architecture changes)
+        - I'm not sure
+
+  - type: textarea
+    id: implementation-ideas
+    attributes:
+      label: Implementation Ideas
+      description: |
+        If you have ideas about how this could be implemented, share them here.
+        Include any technical details, mockups, or references to similar features.
+      placeholder: |
+        Implementation approach:...
+
+        Technical considerations:...
+
+        UI/UX suggestions:...
+
+        Similar features in other apps:...
+
+  - type: textarea
+    id: mockups-examples
+    attributes:
+      label: Mockups, Wireframes, or Examples
+      description: |
+        If you have visual mockups, wireframes, or examples from other applications,
+        please share them here. You can drag and drop images or paste URLs.
+      placeholder: Drag and drop images here or paste URLs to examples...
+
+  - type: checkboxes
+    id: compatibility-considerations
+    attributes:
+      label: Compatibility Considerations
+      description: Please consider and check relevant compatibility aspects
+      options:
+        - label: This feature should work on all supported macOS versions
+        - label: This feature requires specific macOS versions (please specify in additional context)
+        - label: This feature should be optional/configurable
+        - label: This feature might conflict with existing features (please explain)
+        - label: This feature requires new dependencies or permissions
+
+  - type: dropdown
+    id: breaking-changes
+    attributes:
+      label: Breaking Changes
+      description: Would this feature require any breaking changes to existing functionality?
+      options:
+        - "No, fully backward compatible"
+        - "Minor changes to existing behavior"
+        - "Significant changes required"
+        - "I'm not sure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: testing-scenarios
+    attributes:
+      label: Testing Scenarios
+      description: |
+        How would you test this feature to ensure it works correctly?
+        What edge cases should be considered?
+      placeholder: |
+        Test scenarios:
+        1. [Scenario 1]
+        2. [Scenario 2]
+
+        Edge cases to consider:
+        - [Edge case 1]
+        - [Edge case 2]
+
+  - type: textarea
+    id: documentation-impact
+    attributes:
+      label: Documentation Impact
+      description: |
+        What documentation would need to be updated or created for this feature?
+        Consider user guides, API docs, etc.
+      placeholder: |
+        Documentation needed:
+        - Update README.md
+        - Add to FEATURES.md
+        - Update help documentation
+        - API documentation (if applicable)
+
+  - type: textarea
+    id: community-interest
+    attributes:
+      label: Community Interest
+      description: |
+        Do you know of others who would benefit from this feature?
+        Has this been discussed elsewhere?
+      placeholder: |
+        Others who might benefit:...
+
+        Related discussions:...
+
+        Community feedback:...
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: |
+        Add any other context, constraints, or information about the feature request here.
+      placeholder: |
+        Additional considerations:...
+
+        Related features:...
+
+        Long-term vision:...
+
+  - type: dropdown
+    id: contribution-willingness
+    attributes:
+      label: Contribution Interest
+      description: Would you be interested in contributing to the implementation of this feature?
+      options:
+        - "Yes, I'd like to implement this feature"
+        - "Yes, I could help with testing"
+        - "Yes, I could help with documentation"
+        - "Maybe, depending on complexity"
+        - "No, but I'd love to see it implemented"
+
+  - type: markdown
+    attributes:
+      value: |
+        ## What happens next?
+
+        1. **Discussion**: The community and maintainers will discuss your proposal
+        2. **Refinement**: We may ask for clarification or suggest modifications
+        3. **Decision**: We'll decide whether to include this in the roadmap
+        4. **Implementation**: If approved, we'll work on implementation (help welcome!)
+        5. **Testing**: Community testing and feedback before release
+
+        Thank you for helping improve TextConverter Pro! 🚀
+
+        **Note**: Feature requests with detailed use cases and clear problem statements are more likely to be implemented.

@@ -2,8 +2,7 @@
 Enhanced Feedback Dialog for User Experience Insights
 """
 
-import rumps
-from typing import Optional, Dict, Any
+from typing import Optional
 from ..utils.feedback_system import get_feedback_system
 from ..utils.logger import get_logger
 
@@ -118,10 +117,12 @@ Click 'Export Data' to save detailed analytics for analysis."""
 • Error Rate: {(summary['errors']['total'] / max(1, summary['total_events'])) * 100:.1f}%
 • Hotkey Usage: {summary['hotkey_activations']} activations"""
 
+            import rumps
             rumps.alert("Performance Analysis", performance_content)
 
         except Exception as e:
             self.logger.error("Failed to show performance metrics", exception=e)
+            import rumps
             rumps.alert("Error", "Failed to generate performance metrics.")
 
     def show_usage_trends(self) -> None:

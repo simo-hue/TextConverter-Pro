@@ -13,8 +13,8 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-REPO_OWNER="simonemattioli"
-REPO_NAME="textconverter-pro"
+REPO_OWNER="simo-hue"
+REPO_NAME="TextConverter-Pro"
 BUILD_DIR="dist"
 RELEASE_DIR="release"
 
